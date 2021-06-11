@@ -16,7 +16,7 @@ import org.koin.core.context.unloadKoinModules
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,29 +24,31 @@ class FavoriteFragment : Fragment() {
         loadKoinModules(favoriteModule)
 
         val sectionsPagerAdapter = activity?.let { SectionsPagerAdapter(it) }
-        binding.viewPager.adapter = sectionsPagerAdapter
-        TabLayoutMediator(
-            binding.layoutTabLayout,
-            binding.viewPager
-        ) { tab, position ->
-            tab.text = resources.getString(TAB_TITLES[position])
-        }.attach()
+        binding?.apply {
+            viewPager.adapter = sectionsPagerAdapter
+            TabLayoutMediator(
+                layoutTabLayout,
+                viewPager
+            ) { tab, position ->
+                tab.text = resources.getString(TAB_TITLES[position])
+            }.attach()
+        }
     }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
         unloadKoinModules(favoriteModule)
-        binding.viewPager.adapter = null
+        binding?.viewPager?.adapter = null
         _binding = null
     }
 
