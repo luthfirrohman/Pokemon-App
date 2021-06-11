@@ -33,4 +33,5 @@ class SettingActivity : AppCompatActivity() {
         onBackPressed()
         return super.onSupportNavigateUp()
     }
+
 }

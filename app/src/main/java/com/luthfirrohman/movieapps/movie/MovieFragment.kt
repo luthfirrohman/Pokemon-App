@@ -18,16 +18,16 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class MovieFragment : Fragment() {
 
     private var _binding: FragmentMovieBinding? = null
-    private val binding get() = _binding as FragmentMovieBinding
+    private val binding get() = _binding
     private val movieViewModel: MovieViewModel by viewModel()
     private var adapter = MovieAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun showRecyclerViewMovies() {
-        binding.apply {
+        binding?.apply {
             rvMovie.layoutManager = LinearLayoutManager(context)
             rvMovie.setHasFixedSize(true)
             rvMovie.isNestedScrollingEnabled = true
@@ -50,7 +50,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun showProgressBarMovie(status: Boolean) {
-        binding.apply {
+        binding?.apply {
             if (status) {
                 progressbarMovie.visibility = View.VISIBLE
                 rvMovie.visibility = View.GONE
@@ -85,5 +85,11 @@ class MovieFragment : Fragment() {
                 }
             }
         })
+    }
+
+    override fun onDestroyView() {
+        binding?.rvMovie?.adapter = null
+        _binding = null
+        super.onDestroyView()
     }
 }

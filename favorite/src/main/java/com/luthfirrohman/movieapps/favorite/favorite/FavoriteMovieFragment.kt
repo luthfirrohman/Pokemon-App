@@ -23,16 +23,16 @@ import org.koin.core.context.loadKoinModules
 class FavoriteMovieFragment : Fragment() {
 
     private var _binding: FragmentFavoriteMovieBinding? = null
-    private val binding get() = _binding as FragmentFavoriteMovieBinding
+    private val binding get() = _binding
     private val favoriteViewModel: FavoriteViewModel by viewModel()
     private var adapter = FavoriteAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         _binding = FragmentFavoriteMovieBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class FavoriteMovieFragment : Fragment() {
 
         loadKoinModules(favoriteModule)
 
-        itemTouchHelper.attachToRecyclerView(binding.rvFavMovie)
+        itemTouchHelper.attachToRecyclerView(binding?.rvFavMovie)
 
         showProgressBarMovie(true)
 
@@ -50,7 +50,7 @@ class FavoriteMovieFragment : Fragment() {
     }
 
     private fun showRecyclerViewMovies() {
-        binding.apply {
+        binding?.apply {
             rvFavMovie.layoutManager = LinearLayoutManager(context)
             rvFavMovie.setHasFixedSize(true)
             rvFavMovie.isNestedScrollingEnabled = true
@@ -59,7 +59,7 @@ class FavoriteMovieFragment : Fragment() {
     }
 
     private fun showProgressBarMovie(status: Boolean) {
-        binding.apply {
+        binding?.apply {
             if (status) {
                 progressbarMovie.visibility = View.VISIBLE
                 rvFavMovie.visibility = View.GONE
@@ -85,8 +85,8 @@ class FavoriteMovieFragment : Fragment() {
                 showProgressBarMovie(false)
             }
             if (movies.toString() == "[]") {
-                binding.emptyImage.visibility = View.VISIBLE
-                binding.emptyText.visibility = View.VISIBLE
+                binding?.emptyImage?.visibility = View.VISIBLE
+                binding?.emptyText?.visibility = View.VISIBLE
             }
         }
     }
@@ -148,4 +148,10 @@ class FavoriteMovieFragment : Fragment() {
             }
         }
     })
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        binding?.rvFavMovie?.adapter = null
+    }
 }

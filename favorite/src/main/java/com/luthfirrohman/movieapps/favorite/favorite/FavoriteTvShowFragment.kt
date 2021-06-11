@@ -23,16 +23,16 @@ import org.koin.core.context.loadKoinModules
 class FavoriteTvShowFragment : Fragment() {
 
     private var _binding: FragmentFavoriteTvShowBinding? = null
-    private val binding get() = _binding as FragmentFavoriteTvShowBinding
+    private val binding get() = _binding
     private val favoriteViewModel: FavoriteViewModel by viewModel()
     private var adapter = FavoriteAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         _binding = FragmentFavoriteTvShowBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class FavoriteTvShowFragment : Fragment() {
 
         loadKoinModules(favoriteModule)
 
-        itemTouchHelper.attachToRecyclerView(binding.rvFavTvShow)
+        itemTouchHelper.attachToRecyclerView(binding?.rvFavTvShow)
 
         showProgressBarTvShow(true)
 
@@ -50,7 +50,7 @@ class FavoriteTvShowFragment : Fragment() {
     }
 
     private fun showRecyclerViewMovies() {
-        binding.apply {
+        binding?.apply {
             rvFavTvShow.layoutManager = LinearLayoutManager(context)
             rvFavTvShow.setHasFixedSize(true)
             rvFavTvShow.isNestedScrollingEnabled = true
@@ -59,7 +59,7 @@ class FavoriteTvShowFragment : Fragment() {
     }
 
     private fun showProgressBarTvShow(status: Boolean) {
-        binding.apply {
+        binding?.apply {
             if (status) {
                 progressbarTvshow.visibility = View.VISIBLE
                 rvFavTvShow.visibility = View.GONE
@@ -85,8 +85,8 @@ class FavoriteTvShowFragment : Fragment() {
                 showProgressBarTvShow(false)
             }
             if (tv.toString() == "[]") {
-                binding.emptyImage.visibility = View.VISIBLE
-                binding.emptyText.visibility = View.VISIBLE
+                binding?.emptyImage?.visibility = View.VISIBLE
+                binding?.emptyText?.visibility = View.VISIBLE
             }
         })
     }
@@ -148,4 +148,10 @@ class FavoriteTvShowFragment : Fragment() {
             }
         }
     })
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+        binding?.rvFavTvShow?.adapter = null
+    }
 }

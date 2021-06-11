@@ -17,16 +17,16 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class TvShowFragment : Fragment() {
 
     private var _binding: FragmentTvShowBinding? = null
-    private val binding get() = _binding as FragmentTvShowBinding
+    private val binding get() = _binding
     private val tvShowViewModel: TvShowViewModel by viewModel()
     private var adapter = TvShowAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View {
+    ): View? {
         _binding = FragmentTvShowBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class TvShowFragment : Fragment() {
     }
 
     private fun showRecyclerViewMovies() {
-        binding.apply {
+        binding?.apply {
             rvTvShow.layoutManager = LinearLayoutManager(context)
             rvTvShow.setHasFixedSize(true)
             rvTvShow.isNestedScrollingEnabled = true
@@ -49,7 +49,7 @@ class TvShowFragment : Fragment() {
     }
 
     private fun showProgressBarTvShow(status: Boolean) {
-        binding.apply {
+        binding?.apply {
             if (status) {
                 progressbarTvshow.visibility = View.VISIBLE
                 rvTvShow.visibility = View.GONE
@@ -84,5 +84,12 @@ class TvShowFragment : Fragment() {
                 }
             }
         })
+    }
+
+
+    override fun onDestroyView() {
+        binding?.rvTvShow?.adapter = null
+        _binding = null
+        super.onDestroyView()
     }
 }

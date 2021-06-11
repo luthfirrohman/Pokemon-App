@@ -11,11 +11,12 @@ import com.luthfirrohman.movieapps.R
 import com.luthfirrohman.movieapps.favorite.databinding.FragmentFavoriteBinding
 import com.luthfirrohman.movieapps.favorite.di.favoriteModule
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
 
 class FavoriteFragment : Fragment() {
 
     private var _binding: FragmentFavoriteBinding? = null
-    private val binding get() = _binding as FragmentFavoriteBinding
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,6 +40,14 @@ class FavoriteFragment : Fragment() {
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        unloadKoinModules(favoriteModule)
+        binding.viewPager.adapter = null
+        _binding = null
     }
 
 
