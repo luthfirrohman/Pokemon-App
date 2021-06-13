@@ -20,7 +20,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
-        buildConfigField('String', 'GITHUB_TOKEN', '"e23675f54ef066d59f833b1d39db20fa"')
+        buildConfigField('String', 'API_TOKEN', '"e23675f54ef066d59f833b1d39db20fa"')
+        buildConfigField('String', 'PINNED_CERT', '"sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0="')
     }
 
     buildTypes {
