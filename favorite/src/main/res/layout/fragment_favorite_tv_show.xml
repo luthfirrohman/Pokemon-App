@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".favorite.FavoriteTvShowFragment">
 
     <ProgressBar
@@ -20,15 +21,16 @@
         android:paddingBottom="16dp"
         android:layout_marginBottom="40dp"/>
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/empty_image"
         android:visibility="gone"
-        android:layout_width="80dp"
+        android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="140dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_empty"
-        android:contentDescription="@string/data_empty" />
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="emptybox.json"
+        app:lottie_loop="false" />
 
     <TextView
         android:id="@+id/empty_text"
@@ -37,7 +39,7 @@
         android:layout_height="match_parent"
         android:fontFamily="@font/poppins"
         android:text="@string/no_favorite_tv"
-        android:paddingTop="140dp"
+        android:paddingTop="160dp"
         android:gravity="center"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
