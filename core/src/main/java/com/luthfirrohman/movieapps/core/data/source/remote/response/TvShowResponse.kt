@@ -7,7 +7,7 @@ data class TvShowResponse(
     @field:SerializedName("results")
     val results: List<PopularTvShowItem>,
 
-)
+    )
 
 data class PopularTvShowItem(
 

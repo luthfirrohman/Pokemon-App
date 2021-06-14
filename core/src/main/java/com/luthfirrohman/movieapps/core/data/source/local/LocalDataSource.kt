@@ -38,10 +38,4 @@ class LocalDataSource(private val movieDao: MovieFavoriteDao) {
         movieDao.updateMovies(movie)
     }
 
-//    companion object {
-//        private var INSTANCE: LocalDataSource? = null
-//
-//        fun getInstance(movieDao: MovieFavoriteDao): LocalDataSource =
-//            INSTANCE ?: LocalDataSource(movieDao)
-//    }
 }

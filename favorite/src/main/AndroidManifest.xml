@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.luthfirrohman.movieapps.favorite">
+
+    <application
+        android:supportsRtl="true"
+        tools:ignore="AllowBackup" />
 
     <dist:module
         dist:instant="false"

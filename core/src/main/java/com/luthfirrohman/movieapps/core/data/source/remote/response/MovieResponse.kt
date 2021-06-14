@@ -7,7 +7,7 @@ data class MovieResponse(
     @field:SerializedName("results")
     val results: List<PopularMovieItem>,
 
-)
+    )
 
 data class PopularMovieItem(
 
