@@ -136,8 +136,8 @@ class DetailActivity : AppCompatActivity() {
         return when (data.status) {
             Status.LOADING -> showProgressBarDetails(true)
             Status.SUCCESS -> if (data.data != null) {
-                val state = data.data!!.isFavorite
-                setFavorite(state)
+                val state = data.data?.isFavorite
+                state?.let { setFavorite(it) }
                 showProgressBarDetails(false)
             } else {
                 showProgressBarDetails(true)
