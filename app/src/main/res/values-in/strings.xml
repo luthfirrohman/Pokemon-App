@@ -19,7 +19,6 @@
     <string name="menu_tv_show">Serial TV</string>
     <string name="menu_favorite">Favorite</string>
     <string name="state_favorite">state favorit</string>
-    <string name="title_favorite">Favorite</string>
     <string name="language">Bahasa</string>
     <string name="basic">Basic</string>
     <string name="state_setting">state setting</string>
@@ -27,7 +26,6 @@
     <string name="title_bar_pop_tv">Serial TV Populer</string>
     <string name="title_bar_fav">List Favorit</string>
     <string name="title_bar_setting">Pengaturan</string>
-    <string name="data_empty">Data Kosong</string>
     <string name="no_favorite_movie">Belum ada Film Favorit</string>
     <string name="no_favorite_tv">Belum ada Serial TV Favorite</string>
 
