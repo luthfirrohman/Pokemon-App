@@ -24,7 +24,7 @@ class FavoriteMovieFragment : Fragment() {
 
     private var _binding: FragmentFavoriteMovieBinding? = null
     private val binding get() = _binding
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    internal val favoriteViewModel: FavoriteViewModel by viewModel()
     private var adapter = FavoriteAdapter()
 
     override fun onCreateView(
@@ -49,7 +49,7 @@ class FavoriteMovieFragment : Fragment() {
         showRecyclerViewMovies()
     }
 
-    private fun showRecyclerViewMovies() {
+    internal fun showRecyclerViewMovies() {
         binding?.apply {
             rvFavMovie.layoutManager = LinearLayoutManager(context)
             rvFavMovie.setHasFixedSize(true)
@@ -70,7 +70,7 @@ class FavoriteMovieFragment : Fragment() {
         }
     }
 
-    private fun getMoviesData() {
+    internal fun getMoviesData() {
         adapter.onItemClick = {
             val intent = Intent(activity, DetailActivity::class.java)
             intent.apply {

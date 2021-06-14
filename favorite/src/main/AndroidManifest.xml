@@ -6,7 +6,7 @@
 
     <application
         android:supportsRtl="true"
-        tools:ignore="AllowBackup" />
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning" />
 
     <dist:module
         dist:instant="false"

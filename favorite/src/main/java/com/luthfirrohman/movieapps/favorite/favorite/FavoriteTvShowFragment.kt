@@ -24,7 +24,7 @@ class FavoriteTvShowFragment : Fragment() {
 
     private var _binding: FragmentFavoriteTvShowBinding? = null
     private val binding get() = _binding
-    private val favoriteViewModel: FavoriteViewModel by viewModel()
+    internal val favoriteViewModel: FavoriteViewModel by viewModel()
     private var adapter = FavoriteAdapter()
 
     override fun onCreateView(
@@ -49,7 +49,7 @@ class FavoriteTvShowFragment : Fragment() {
         showRecyclerViewMovies()
     }
 
-    private fun showRecyclerViewMovies() {
+    internal fun showRecyclerViewMovies() {
         binding?.apply {
             rvFavTvShow.layoutManager = LinearLayoutManager(context)
             rvFavTvShow.setHasFixedSize(true)
@@ -70,7 +70,7 @@ class FavoriteTvShowFragment : Fragment() {
         }
     }
 
-    private fun getTvShowData() {
+    internal fun getTvShowData() {
         adapter.onItemClick = {
             val intent = Intent(activity, DetailActivity::class.java)
             intent.apply {
